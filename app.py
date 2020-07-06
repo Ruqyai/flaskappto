@@ -1,38 +1,16 @@
-import flask
-from flask import Flask, request, render_template
-from sklearn.externals import joblib
-import numpy as np
-
-
-
-
+#app.py
+from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route("/")
-@app.route("/index")
 def index():
-    return flask.render_template('index.html')
+        return render_template("index.html")
+
+@app.route("/data")
+def data():
+	return "<h1>Cheese and Crackers</h1>"
+
+if __name__ == "__main__":
+	app.run(host='0.0.0.0', debug=True)
 
 
-@app.route('/predict', methods=['POST'])
-def make_prediction():
-	if request.method=='POST':
-
-		
-		file = request.form.getlist('input_example[]')
-		results = list(map(int, file))
-		
-		prediction = model.predict([results,])
-		
-		label = int(np.squeeze(prediction))
-
-		return render_template('index.html', label=label)
-
-
-if __name__ == '__main__':
-	# load ml model
-	model = joblib.load('model.pkl')
-	# start api
-	#app.run(host='flaskappto.herokuapp.com', port=8000, debug=True)
-	app.debug = True
-        app.run()
