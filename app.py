@@ -33,4 +33,6 @@ if __name__ == '__main__':
 	# load ml model
 	model = joblib.load('model.pkl')
 	# start api
-	app.run(host='flaskappto.herokuapp.com', port=8000, debug=True)
+	#app.run(host='flaskappto.herokuapp.com', port=8000, debug=True)
+	app.debug = True
+        app.run()
